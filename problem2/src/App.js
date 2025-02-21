@@ -1,9 +1,12 @@
 import "./App.css";
+import SwapForm from "./containers/SwapForm";
+
+import TokenProvider from "./contexts/TokenProvide";
 
 function App() {
   return (
     <div className="container">
-      <form>
+      {/* <form>
         <h5>Swap</h5>
         <label htmlFor="input-amount">Amount to send</label>
         <input id="input-amount" />
@@ -12,7 +15,11 @@ function App() {
         <input id="output-amount" />
 
         <button>CONFIRM SWAP</button>
-      </form>
+      </form> */}
+
+      <TokenProvider>
+        <SwapForm />
+      </TokenProvider>
     </div>
   );
 }
