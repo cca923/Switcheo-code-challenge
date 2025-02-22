@@ -1,12 +1,14 @@
 import React from "react";
 
+import TokenIcon from "../TokenIcon";
+
 import "./styles.css";
 
-const Currency = ({ className, icon, name }) => {
+const Currency = ({ token }) => {
   return (
-    <div className={className}>
-      <img className="token-icon" src={icon} alt="token" />
-      <div className="">{name}</div>
+    <div className="currency">
+      <TokenIcon token={token} />
+      <div>{token}</div>
     </div>
   );
 };

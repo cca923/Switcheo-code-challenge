@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useTokens } from "../contexts/TokenProvide";
 import { MODAL_TYPE } from "../constants";
+import { isNumber } from "../utils";
 
 const useSwapForm = () => {
   const { priceMap } = useTokens();
@@ -14,7 +15,10 @@ const useSwapForm = () => {
   const [tokenType, setTokenType] = useState("");
 
   const calculateAmount = ({ amount, fromToken, toToken }) => {
-    if (amount < 0) return 0;
+    if (!isNumber(amount) || parseFloat(amount) < 0) {
+      // TODO: error alert
+      return 0;
+    }
 
     const fromPrice = priceMap[fromToken];
     const toPrice = priceMap[toToken];
@@ -22,7 +26,7 @@ const useSwapForm = () => {
   };
 
   const handleSendAmountChange = (e) => {
-    const value = parseFloat(e.target.value) || 0;
+    const value = parseFloat(e?.target?.value) || "";
     setSendAmount(value);
     setReceiveAmount(
       calculateAmount({
@@ -34,7 +38,7 @@ const useSwapForm = () => {
   };
 
   const handleReceiveAmountChange = (e) => {
-    const value = parseFloat(e.target.value) || 0;
+    const value = parseFloat(e?.target?.value) || "";
     setReceiveAmount(value);
     setSendAmount(
       calculateAmount({
@@ -63,22 +67,30 @@ const useSwapForm = () => {
   };
 
   const closeModal = ({ token }) => {
+    if (!token) {
+      return setIsModalOpen(false);
+    }
+
     switch (tokenType) {
       case MODAL_TYPE.FROM_TOKEN:
         setSendToken(token);
-        calculateAmount({
-          amount: sendAmount,
-          fromToken: sendToken,
-          toToken: receiveToken,
-        });
+        setReceiveAmount(
+          calculateAmount({
+            amount: sendAmount,
+            fromToken: token,
+            toToken: receiveToken,
+          })
+        );
         break;
       case MODAL_TYPE.TO_TOKEN:
         setReceiveToken(token);
-        calculateAmount({
-          amount: receiveAmount,
-          fromToken: receiveToken,
-          toToken: sendToken,
-        });
+        setReceiveAmount(
+          calculateAmount({
+            amount: sendAmount,
+            fromToken: sendToken,
+            toToken: token,
+          })
+        );
         break;
       default:
         break;

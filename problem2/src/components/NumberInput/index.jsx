@@ -1,20 +1,17 @@
 import React from "react";
 
-const NumberInput = ({ className, title, placeholder, value, onChange }) => {
+import "./styles.css";
+
+const NumberInput = ({ placeholder, value, onChange }) => {
   return (
-    <div className={className}>
-      <label>
-        {title && <span>{title}</span>}
-        <input
-          type="number"
-          placeholder={placeholder ?? 0}
-          onChange={onChange}
-          value={value}
-          min={0}
-          required
-        />
-      </label>
-    </div>
+    <input
+      className="number-input"
+      type="text"
+      placeholder={placeholder ?? 0}
+      onChange={onChange}
+      value={value}
+      // required
+    />
   );
 };
 

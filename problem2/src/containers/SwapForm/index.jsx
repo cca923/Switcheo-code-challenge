@@ -1,11 +1,12 @@
 import React from "react";
-import NumberInput from "../../components/NumberInput";
-import Currency from "../../components/Currency";
 
 import { MODAL_TYPE } from "../../constants";
 import { useTokens } from "../../contexts/TokenProvide";
 import useSwapForm from "../../hooks/useSwapForm";
+import Card from "../../components/Card";
 import TokenModal from "../TokenModal";
+
+import "./styles.css";
 
 const SwapForm = () => {
   const { tokenList } = useTokens();
@@ -24,32 +25,36 @@ const SwapForm = () => {
 
   return (
     <>
-      <form>
-        <div onClick={() => openModal({ type: MODAL_TYPE.FROM_TOKEN })}>
-          <Currency name={sendToken} />
-        </div>
-        <NumberInput
-          title="Pay"
-          value={sendAmount}
-          onChange={onSendAmountChange}
-          placeholder="0"
-        />
+      <form className="form">
+        <div className="card-wrapper">
+          <Card
+            title="Pay"
+            token={sendToken}
+            amount={sendAmount}
+            onSelectorClick={() => openModal({ type: MODAL_TYPE.FROM_TOKEN })}
+            onInputChange={onSendAmountChange}
+          />
 
-        <div onClick={() => openModal({ type: MODAL_TYPE.TO_TOKEN })}>
-          <Currency name={receiveToken} />
+          <img
+            className="img-convert"
+            src="/images/convert.png"
+            alt="convert"
+          />
+
+          <Card
+            title="Receive"
+            token={receiveToken}
+            amount={receiveAmount}
+            onSelectorClick={() => openModal({ type: MODAL_TYPE.TO_TOKEN })}
+            onInputChange={onReceiveAmountChange}
+          />
         </div>
 
-        <NumberInput
-          title="Receive"
-          value={receiveAmount}
-          onChange={onReceiveAmountChange}
-          placeholder="0"
-        />
-        <button type="button" onClick={onSwap}>
+        <button className="btn-swap shadow" type="button" onClick={onSwap}>
           Swap
         </button>
       </form>
-
+      {/* TODO: cannot show existed token in diff modal */}
       {isModalOpen && <TokenModal tokenList={tokenList} onClose={closeModal} />}
     </>
   );

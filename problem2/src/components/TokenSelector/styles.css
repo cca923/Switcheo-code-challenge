@@ -1,0 +1,25 @@
+.token-selector {
+  width: fit-content;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0 8px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f9f9f9;
+
+  &:hover {
+    background: #f1f1f1;
+  }
+
+  &.default-selector {
+    padding: 0 12px;
+  }
+}
+
+.img-arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+}
