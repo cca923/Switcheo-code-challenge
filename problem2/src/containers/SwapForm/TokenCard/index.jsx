@@ -13,6 +13,7 @@ const TokenCard = ({
   onSelectorClick,
   onInputChange,
   inputDisabled,
+  inputAutoFocus,
 }) => {
   const timeoutRef = useRef(null);
   const [errorMsg, setErrorMsg] = useState("");
@@ -44,6 +45,7 @@ const TokenCard = ({
             value={amount}
             onChange={handleInputChange}
             disabled={inputDisabled}
+            autoFocus={inputAutoFocus}
           />
           <TokenSelector token={token} onClick={onSelectorClick} />
         </div>

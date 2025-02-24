@@ -28,9 +28,8 @@ const useSwapForm = () => {
   };
 
   const exchangeAmount = ({ amount, fromToken, toToken }) => {
-    const fromPrice = priceMap[fromToken];
-    const toPrice = priceMap[toToken];
-    return fromPrice && toPrice ? +amount * (+toPrice / +fromPrice) : 0;
+    const rate = exchangeRate({ fromToken, toToken });
+    return rate * +amount;
   };
 
   const handleSendAmountChange = ({ amount }) => {

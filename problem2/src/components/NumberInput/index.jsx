@@ -2,7 +2,13 @@ import React from "react";
 
 import "./styles.css";
 
-const NumberInput = ({ placeholder, value, onChange, disabled }) => {
+const NumberInput = ({
+  placeholder,
+  value,
+  onChange,
+  disabled,
+  autoFocus = false,
+}) => {
   return (
     <input
       className="number-input"
@@ -11,6 +17,7 @@ const NumberInput = ({ placeholder, value, onChange, disabled }) => {
       value={value}
       onChange={onChange}
       disabled={disabled}
+      autoFocus={autoFocus}
     />
   );
 };

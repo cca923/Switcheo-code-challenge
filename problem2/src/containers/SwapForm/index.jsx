@@ -33,6 +33,7 @@ const SwapForm = () => {
             amount={sendAmount}
             onSelectorClick={() => openModal({ type: MODAL_TYPE.FROM_TOKEN })}
             onInputChange={onSendAmountChange}
+            inputAutoFocus
           />
 
           <img
