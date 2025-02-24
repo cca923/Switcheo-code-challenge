@@ -48,7 +48,7 @@ const SwapForm = () => {
             amount={receiveAmount}
             onSelectorClick={() => openModal({ type: MODAL_TYPE.TO_TOKEN })}
             onInputChange={onReceiveAmountChange}
-            inputDisabled={!receiveToken}
+            inputDisabled={!sendToken || !receiveToken}
           />
         </div>
 
