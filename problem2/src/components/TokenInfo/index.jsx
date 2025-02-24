@@ -4,13 +4,13 @@ import TokenIcon from "../TokenIcon";
 
 import "./styles.css";
 
-const Currency = ({ token }) => {
+const TokenInfo = ({ token }) => {
   return (
-    <div className="currency">
+    <div className="token-info">
       <TokenIcon token={token} />
       <div>{token}</div>
     </div>
   );
 };
 
-export default Currency;
+export default TokenInfo;

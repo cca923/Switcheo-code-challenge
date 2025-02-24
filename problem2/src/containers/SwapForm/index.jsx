@@ -1,20 +1,20 @@
 import React from "react";
 
 import { MODAL_TYPE } from "../../constants";
-import { useTokens } from "../../contexts/TokenProvide";
 import useSwapForm from "../../hooks/useSwapForm";
-import Card from "../../components/Card";
+import TokenCard from "./TokenCard";
 import TokenModal from "../TokenModal";
 
 import "./styles.css";
 
 const SwapForm = () => {
-  const { tokenList } = useTokens();
   const {
+    validTokenList,
     sendToken,
     receiveToken,
     sendAmount,
     receiveAmount,
+    rate,
     isModalOpen,
     openModal,
     closeModal,
@@ -27,7 +27,7 @@ const SwapForm = () => {
     <>
       <form className="form">
         <div className="card-wrapper">
-          <Card
+          <TokenCard
             title="Pay"
             token={sendToken}
             amount={sendAmount}
@@ -41,21 +41,28 @@ const SwapForm = () => {
             alt="convert"
           />
 
-          <Card
+          <TokenCard
             title="Receive"
             token={receiveToken}
             amount={receiveAmount}
             onSelectorClick={() => openModal({ type: MODAL_TYPE.TO_TOKEN })}
             onInputChange={onReceiveAmountChange}
+            inputDisabled={!receiveToken}
           />
+        </div>
+
+        <div className="rate">
+          {rate ? `1 ${sendToken} = ${rate} ${receiveToken}` : "Exchange Rate"}
         </div>
 
         <button className="btn-swap shadow" type="button" onClick={onSwap}>
           Swap
         </button>
       </form>
-      {/* TODO: cannot show existed token in diff modal */}
-      {isModalOpen && <TokenModal tokenList={tokenList} onClose={closeModal} />}
+
+      {isModalOpen && (
+        <TokenModal tokenList={validTokenList} onClose={closeModal} />
+      )}
     </>
   );
 };

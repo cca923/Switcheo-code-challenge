@@ -2,9 +2,20 @@
   appearance: none;
   outline: none;
   border: none;
-  padding: 10px;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
   background: none;
   color: #fff;
+
+  &::placeholder {
+    color: #a9a9a9;
+    opacity: 1; /* Firefox */
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    &::placeholder {
+      color: #fff;
+    }
+  }
 }

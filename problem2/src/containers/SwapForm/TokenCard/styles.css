@@ -1,0 +1,41 @@
+.card {
+  width: 400px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 20px 16px;
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    padding: 5px;
+    &.disabled {
+      background: none;
+    }
+    .number-input {
+      max-width: 200px;
+      margin-left: 10px;
+    }
+  }
+  .tips {
+    height: 20px;
+    padding: 5px;
+  }
+  .error {
+    color: #ff0000;
+  }
+}

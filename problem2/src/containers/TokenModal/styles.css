@@ -43,7 +43,7 @@
   overflow-y: scroll;
   height: 378px;
 
-  .currency {
+  .token-info {
     padding: 10px;
     cursor: pointer;
     font-size: 20px;

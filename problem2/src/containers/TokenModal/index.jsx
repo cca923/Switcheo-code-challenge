@@ -1,11 +1,9 @@
-import Currency from "../../components/Currency";
+import Currency from "../../components/TokenInfo";
 
 import "./styles.css";
 
 const TokenModal = ({ tokenList, onClose }) => {
   const handleClick = ({ token }) => {
-    console.log("##", { token });
-
     onClose({ token });
   };
 

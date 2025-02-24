@@ -1,6 +1,6 @@
 import classnames from "classnames";
 
-import Currency from "../Currency";
+import TokenInfo from "../TokenInfo";
 
 import "./styles.css";
 
@@ -12,7 +12,7 @@ const TokenSelector = ({ token, onClick }) => {
       })}
       onClick={onClick}
     >
-      {token ? <Currency token={token} /> : <div>Select token</div>}
+      {token ? <TokenInfo token={token} /> : <div>Select token</div>}
       <img className="img-arrow" src="/images/arrow.png" alt="arrow" />
     </div>
   );
